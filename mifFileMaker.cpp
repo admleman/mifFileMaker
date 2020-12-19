@@ -17,20 +17,18 @@ int main(){
 	cin>>bitWidth;
 	cout<<"\nEnter the depth of the data: ";
 	cin>>dataDepth;
-  memInitFile.open(file_name+".mif");
+ 	memInitFile.open(file_name+".mif");
 	
 	for(auto i = 0; i<dataDepth; i++){
 		cout<<i<<"th memory location, or type 0x to end, USE BINARY!: ";
 		cin>>xData;
-    if(xData == "0x"){
-      break;
-    }
-    else{
-		  theData.push_back(xData);
-    }
-
-  }
-	
+    		if(xData == "0x"){
+			break;
+   		}
+   		else{
+	    		theData.push_back(xData);
+   		}
+  	}
 	memInitFile<<"WIDTH = "<<bitWidth<<";\n";
 	memInitFile<<"DEPTH = "<<dataDepth<<";\n\n";
 	memInitFile<<"ADDRESS_RADIX = DEC;\nDATA_RADIX = BIN;\nCONTENT BEGIN\n";
@@ -39,10 +37,10 @@ int main(){
 	for(auto i = theData.begin();i!=theData.end();i++){
 		memInitFile<<counter<<":"<< *i <<";\n";
 		cout<<counter<<":"<< *i <<";\n";
-    counter++;
+   		counter++;
 	}
-memInitFile<<"END;";
-memInitFile.close();
-cout<<"done!\n";
-return 0;
+	memInitFile<<"END;";
+	memInitFile.close();
+	cout<<"done!\n";
+	return 0;
 }
